@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fake-autopub-lib-test-patrick"
+version = "0.1.0"
+description = "Smoke test package for AutoPub + uv"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Patrick" }]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fake_autopub_lib"]
+
+[tool.autopub]
+plugins = ["uv", "invite_contributors"]
+
+[tool.autopub.plugin_config.invite_contributors]
+organization = "test-patrick"
+team-slug = "test-contributors"
+# Keep this false for a real invite test.
+dry-run = false
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true
