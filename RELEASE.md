@@ -1,4 +1,4 @@
 ---
 release type: patch
 ---
-Add a tiny change to trigger an end-to-end AutoPub + uv + invite-contributors smoke release.
+Finalize the AutoPub smoke release after trusted publishing setup and post-publish fixes.

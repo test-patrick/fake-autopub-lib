@@ -1,6 +1,6 @@
 """Fake package for AutoPub smoke tests."""
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 def hello() -> str:
