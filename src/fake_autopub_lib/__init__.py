@@ -4,4 +4,4 @@ __version__ = "0.1.0"
 
 
 def hello() -> str:
-    return "hello from fake-autopub-lib"
+    return "hello from fake-autopub-lib (release smoke test)"
