@@ -34,12 +34,19 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           fetch-depth: 0
 
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: autopub-data
+          path: .autopub
+
       - name: Prepare release files
         uses: autopub/autopub-action@main
         with:
           command: prepare
           autopub-version: pre-release
           github-token: ${{ github.token }}
+          download-artifact: false
 
       - name: Build package with uv
         uses: autopub/autopub-action@main
@@ -47,6 +54,7 @@ jobs:
           command: build
           autopub-version: pre-release
           github-token: ${{ github.token }}
+          download-artifact: false
 
       - name: Publish to TestPyPI with uv
         uses: autopub/autopub-action@main
@@ -57,3 +65,4 @@ jobs:
           autopub-version: pre-release
           github-token: ${{ secrets.BOT_TOKEN }}
           publish-repository: testpypi
+          download-artifact: false
