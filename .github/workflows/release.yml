@@ -17,12 +17,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: astral-sh/setup-uv@v7
+
       - id: check
-        uses: autopub/autopub-action@main
+        name: Run autopub check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          uvx --from autopub --prerelease=allow \
+            --with pygithub \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            autopub check
+          exit_code=$?
+          set -e
+
+          if [[ $exit_code -eq 0 ]]; then
+            echo "has-release=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Valid RELEASE.md found"
+          else
+            echo "has-release=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No valid RELEASE.md found"
+          fi
+
+      - name: Upload release artifact
+        if: steps.check.outputs.has-release == 'true'
+        uses: actions/upload-artifact@v4
         with:
-          command: check
-          autopub-version: pre-release
-          github-token: ${{ github.token }}
+          name: autopub-data
+          path: .autopub
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
 
   release:
     needs: check
@@ -40,29 +66,32 @@ jobs:
           name: autopub-data
           path: .autopub
 
+      - uses: astral-sh/setup-uv@v7
+
       - name: Prepare release files
-        uses: autopub/autopub-action@main
-        with:
-          command: prepare
-          autopub-version: pre-release
-          github-token: ${{ github.token }}
-          download-artifact: false
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          uvx --from autopub --prerelease=allow \
+            --with pygithub \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            autopub prepare
 
       - name: Build package with uv
-        uses: autopub/autopub-action@main
-        with:
-          command: build
-          autopub-version: pre-release
-          github-token: ${{ github.token }}
-          download-artifact: false
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          uvx --from autopub --prerelease=allow \
+            --with pygithub \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            autopub build
 
       - name: Publish to TestPyPI with uv
-        uses: autopub/autopub-action@main
         env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
           UV_PUBLISH_TRUSTED_PUBLISHING: always
-        with:
-          command: publish
-          autopub-version: pre-release
-          github-token: ${{ secrets.BOT_TOKEN }}
-          publish-repository: testpypi
-          download-artifact: false
+        run: |
+          uvx --from autopub --prerelease=allow \
+            --with pygithub \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            autopub publish --repository testpypi

@@ -18,12 +18,15 @@ jobs:
           sparse-checkout: |
             RELEASE.md
             pyproject.toml
-            invite_contributors.py
           sparse-checkout-cone-mode: false
 
-      - uses: autopub/autopub-action@main
-        with:
-          command: check
-          autopub-version: pre-release
-          github-token: ${{ github.token }}
-          fail-on-missing: "true"
+      - uses: astral-sh/setup-uv@v7
+
+      - name: Run autopub check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          uvx --from autopub --prerelease=allow \
+            --with pygithub \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            autopub check

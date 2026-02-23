@@ -15,7 +15,7 @@ authors = [{ name = "Patrick" }]
 packages = ["src/fake_autopub_lib"]
 
 [tool.autopub]
-plugins = ["uv", "invite_contributors"]
+plugins = ["uv", "strawberry_autopub_plugins.invite_contributors:InviteContributorsPlugin"]
 
 [tool.autopub.plugin_config.invite_contributors]
 organization = "test-patrick"
