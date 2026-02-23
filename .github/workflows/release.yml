@@ -22,7 +22,7 @@ jobs:
         with:
           command: check
           autopub-version: pre-release
-          github-token: ${{ secrets.BOT_TOKEN }}
+          github-token: ${{ github.token }}
 
   release:
     needs: check
@@ -39,14 +39,14 @@ jobs:
         with:
           command: prepare
           autopub-version: pre-release
-          github-token: ${{ secrets.BOT_TOKEN }}
+          github-token: ${{ github.token }}
 
       - name: Build package with uv
         uses: autopub/autopub-action@main
         with:
           command: build
           autopub-version: pre-release
-          github-token: ${{ secrets.BOT_TOKEN }}
+          github-token: ${{ github.token }}
 
       - name: Publish to TestPyPI with uv
         uses: autopub/autopub-action@main

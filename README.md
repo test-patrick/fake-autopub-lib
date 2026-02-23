@@ -40,4 +40,6 @@ Test release for autopub + uv + invite plugin.
 ## Notes
 
 - The invite plugin is local (`invite_contributors.py`) so this repo can test immediately.
+- PR checks and release check/prepare/build use the default `GITHUB_TOKEN`.
+- Publish uses `BOT_TOKEN` because org invites require broader permissions.
 - `autopub-action` currently exposes `extra-plugins`, but the input is not wired in the action implementation yet.

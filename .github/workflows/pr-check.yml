@@ -25,5 +25,5 @@ jobs:
         with:
           command: check
           autopub-version: pre-release
-          github-token: ${{ secrets.BOT_TOKEN }}
+          github-token: ${{ github.token }}
           fail-on-missing: "true"
