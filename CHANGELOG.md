@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.1.4 - 2026-02-24
+------------------
+
+This is just a test release to see if we invite people to orgs
+
 0.1.3 - 2026-02-23
 ------------------
 
