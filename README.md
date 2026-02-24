@@ -9,7 +9,7 @@ Smoke test repo for:
 
 ## Repo setup checklist
 
-1. Create `test-contributors` team in `test-patrick` org.
+1. Ensure the `people` team exists in `test-patrick` org.
 2. Add repo secret `BOT_TOKEN` with:
    - repo write access (for pushing release commit/tag)
    - org member invite permissions (for contributor invites)

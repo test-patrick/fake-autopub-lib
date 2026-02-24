@@ -19,7 +19,7 @@ plugins = ["uv", "strawberry_autopub_plugins.invite_contributors:InviteContribut
 
 [tool.autopub.plugin_config.invite_contributors]
 organization = "test-patrick"
-team-slug = "test-contributors"
+team-slug = "people"
 # Keep this false for a real invite test.
 dry-run = false
 
