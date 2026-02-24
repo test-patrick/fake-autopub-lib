@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.1.5 - 2026-02-24
+------------------
+
+Test org invite with configured people team and git-installed plugin.
+
 0.1.4 - 2026-02-24
 ------------------
 
