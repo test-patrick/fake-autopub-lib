@@ -23,6 +23,7 @@ jobs:
         name: Run autopub check
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TYPEFULLY_API_KEY: ${{ secrets.TYPEFULLY_API_KEY }}
         run: |
           set +e
           uvx --from autopub --prerelease=allow \
@@ -71,6 +72,7 @@ jobs:
       - name: Prepare release files
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TYPEFULLY_API_KEY: ${{ secrets.TYPEFULLY_API_KEY }}
         run: |
           uvx --from autopub --prerelease=allow \
             --with pygithub \
@@ -80,6 +82,7 @@ jobs:
       - name: Build package with uv
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TYPEFULLY_API_KEY: ${{ secrets.TYPEFULLY_API_KEY }}
         run: |
           uvx --from autopub --prerelease=allow \
             --with pygithub \
