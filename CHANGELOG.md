@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.1.9 - 2026-03-03
+------------------
+
+Test Typefully plugin with stdlib urllib (no httpx dependency).
+
 0.1.8 - 2026-03-03
 ------------------
 
