@@ -25,8 +25,9 @@ jobs:
       - name: Run autopub check
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          TYPEFULLY_API_KEY: ${{ secrets.TYPEFULLY_API_KEY }}
         run: |
           uvx --from autopub --prerelease=allow \
             --with pygithub \
-            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git@add-typefully-plugin" \
             autopub check
