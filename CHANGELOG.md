@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.1.11 - 2026-03-03
+-------------------
+
+Test Typefully plugin with correct API v2 payload format.
+
 0.1.10 - 2026-03-03
 -------------------
 
