@@ -28,12 +28,11 @@ team-slug = "people"
 dry-run = false
 
 [tool.autopub.plugin_config.typefully]
-social-set-id = "placeholder"
+social-set-id = "146478"
 platforms = ["x"]
 project-name = "fake-autopub-lib"
 message-template = "{project_name} {version} has been released!\n\n{release_notes}"
 publish-mode = "draft"
-dry-run = true
 
 [[tool.uv.index]]
 name = "testpypi"
