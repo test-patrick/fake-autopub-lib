@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.1.8 - 2026-03-03
+------------------
+
+Test Typefully plugin draft creation after base_url fix.
+
 0.1.7 - 2026-03-03
 ------------------
 
