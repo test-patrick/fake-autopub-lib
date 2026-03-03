@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+0.1.10 - 2026-03-03
+-------------------
+
+Test Typefully plugin with AutopubException .message fix.
+
 0.1.9 - 2026-03-03
 ------------------
 
