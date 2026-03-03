@@ -15,13 +15,25 @@ authors = [{ name = "Patrick" }]
 packages = ["src/fake_autopub_lib"]
 
 [tool.autopub]
-plugins = ["uv", "strawberry_autopub_plugins.invite_contributors:InviteContributorsPlugin"]
+plugins = [
+  "uv",
+  "strawberry_autopub_plugins.invite_contributors:InviteContributorsPlugin",
+  "strawberry_autopub_plugins.typefully:TypefullyPlugin",
+]
 
 [tool.autopub.plugin_config.invite_contributors]
 organization = "test-patrick"
 team-slug = "people"
 # Keep this false for a real invite test.
 dry-run = false
+
+[tool.autopub.plugin_config.typefully]
+social-set-id = "placeholder"
+platforms = ["x"]
+project-name = "fake-autopub-lib"
+message-template = "{project_name} {version} has been released!\n\n{release_notes}"
+publish-mode = "draft"
+dry-run = true
 
 [[tool.uv.index]]
 name = "testpypi"

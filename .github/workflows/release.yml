@@ -27,7 +27,7 @@ jobs:
           set +e
           uvx --from autopub --prerelease=allow \
             --with pygithub \
-            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git@add-typefully-plugin" \
             autopub check
           exit_code=$?
           set -e
@@ -74,7 +74,7 @@ jobs:
         run: |
           uvx --from autopub --prerelease=allow \
             --with pygithub \
-            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git@add-typefully-plugin" \
             autopub prepare
 
       - name: Build package with uv
@@ -83,15 +83,16 @@ jobs:
         run: |
           uvx --from autopub --prerelease=allow \
             --with pygithub \
-            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git@add-typefully-plugin" \
             autopub build
 
       - name: Publish to TestPyPI with uv
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
           UV_PUBLISH_TRUSTED_PUBLISHING: always
+          TYPEFULLY_API_KEY: ${{ secrets.TYPEFULLY_API_KEY }}
         run: |
           uvx --from autopub --prerelease=allow \
             --with pygithub \
-            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git" \
+            --with "strawberry-autopub-plugins @ git+https://github.com/strawberry-graphql/autopub-plugins.git@add-typefully-plugin" \
             autopub publish --repository testpypi
